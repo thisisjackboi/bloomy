@@ -32,7 +32,7 @@ export default function FlowerPicker() {
               <div className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-pink-50 to-pink-100/50 rounded-full border-2 border-pink-200 shadow-sm">
                 <span className="text-base font-bold text-pink-600">{totalFlowers}</span>
                 <span className="text-sm text-gray-500">/</span>
-                <span className="text-base font-bold text-gray-400">10</span>
+                <span className="text-base font-bold text-gray-400">6</span>
                 <span className="text-xs text-gray-600 ml-1 font-medium">flowers selected</span>
               </div>
               <p className="text-[11px] uppercase tracking-wider text-pink-600 font-bold animate-pulse">
@@ -64,7 +64,7 @@ export default function FlowerPicker() {
                       }`}
                     onClick={(event) => {
                       event.preventDefault();
-                      if (totalFlowers < 10) addFlower(flower);
+                      if (totalFlowers < 6) addFlower(flower);
                     }}
                   >
 

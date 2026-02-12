@@ -59,9 +59,26 @@ export default function ShareBouquet() {
     // Encode the message for URL
     const encodedMessage = encodeURIComponent(message);
     
-    // Open WhatsApp with the message
-    const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
-    window.open(whatsappUrl, '_blank');
+    // Detect if user is on iOS
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    
+    // Create WhatsApp URL - use different approach for iOS
+    let whatsappUrl;
+    if (isIOS) {
+      // For iOS, try the app scheme first
+      whatsappUrl = `whatsapp://send?text=${encodedMessage}`;
+    } else {
+      // For other platforms, use the web version
+      whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
+    }
+    
+    // Use location.href for better iOS compatibility instead of window.open
+    try {
+      window.location.href = whatsappUrl;
+    } catch (error) {
+      // Fallback to web version if app scheme fails
+      window.location.href = `https://wa.me/?text=${encodedMessage}`;
+    }
   };
 
   return (
