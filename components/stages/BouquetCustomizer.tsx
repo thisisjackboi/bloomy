@@ -54,7 +54,16 @@ export default function BouquetCustomizer() {
 
   return (
     <div className="flex flex-col mx-auto max-w-screen-lg animate-fade-in">
-      {/* Controls section - Sticky */}
+      {/* Step Indicator */}
+      <div className="text-center mb-6">
+        <div className="inline-block bg-pink-100 px-6 py-2 rounded-full mb-3">
+          <p className="text-xs font-bold uppercase tracking-widest text-pink-600">Step 2 of 4</p>
+        </div>
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">Customize Your Bouquet</h2>
+        <p className="text-gray-600 text-sm md:text-base">Make it uniquely yours with these options</p>
+      </div>
+
+      {/* Controls section - Original Styling */}
       <div className="sticky top-0 z-40 p-4 md:p-6 bg-white/30 backdrop-blur-sm rounded-[40px] border border-white/50 shadow-sm mb-4">
         <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Bundle & Wrap</h2>
 
@@ -85,10 +94,11 @@ export default function BouquetCustomizer() {
                   <button
                     key={w.id}
                     onClick={() => setWrapper(w.id)}
-                    className={`relative px-4 py-3 text-[10px] font-bold uppercase rounded-2xl transition-all duration-300 border ${isSelected
-                      ? "bg-pink-500 text-white border-pink-500 shadow-md transform -translate-y-1"
-                      : "bg-white text-gray-500 border-pink-50 hover:border-pink-200 hover:bg-pink-50/30"
-                      }`}
+                    className={`relative px-4 py-3 text-[10px] font-bold uppercase rounded-2xl transition-all duration-300 border ${
+                      isSelected
+                        ? "bg-pink-500 text-white border-pink-500 shadow-md transform -translate-y-1"
+                        : "bg-white text-gray-500 border-pink-50 hover:border-pink-200 hover:bg-pink-50/30"
+                    }`}
                   >
                     {w.name}
                     {isSelected && (
@@ -104,11 +114,14 @@ export default function BouquetCustomizer() {
         </div>
       </div>
 
-      {/* Helper instruction text */}
-      <div className="text-center mb-4 animate-fade-in">
-        <p className="text-sm text-gray-600 italic">
-          👆 Use the above filters to customize your bouquet
-        </p>
+      {/* Helper instruction text - More prominent */}
+      <div className="text-center mb-6 animate-fade-in">
+        <div className="inline-flex items-center gap-2 bg-yellow-50 border-2 border-yellow-200 px-6 py-3 rounded-full">
+          <span className="text-xl">👆</span>
+          <p className="text-sm font-semibold text-yellow-800">
+            Use the controls above to personalize your bouquet
+          </p>
+        </div>
       </div>
 
       {/* Visualization area */}

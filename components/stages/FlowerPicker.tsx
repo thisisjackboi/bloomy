@@ -114,9 +114,11 @@ export default function FlowerPicker() {
 
         {/* Selected flowers summary list */}
         {totalFlowers > 0 && (
-          <div className="animate-fade-in-up">
-            <p className="text-[10px] uppercase tracking-widest text-gray-400 mb-3">Your Selection</p>
-            <div className="flex flex-wrap gap-2 justify-center pb-8 border-b border-white/20">
+          <div className="animate-fade-in-up mt-8">
+            <p className="text-sm font-bold text-gray-700 uppercase tracking-wide mb-4">Selected Flowers</p>
+            
+            {/* Selected Flowers List */}
+            <div className="flex flex-wrap gap-3 justify-center pb-8">
               {Object.entries(selectedFlowersMap).map(([id, count]) => {
                 const flower = flowersData.find(
                   (f) => f.id === Number.parseInt(id)
@@ -125,14 +127,17 @@ export default function FlowerPicker() {
                 return (
                   <button
                     key={id}
-                    className="group px-3 py-1 text-[10px] font-bold text-gray-500 hover:text-pink-500 transition-all flex items-center gap-2"
+                    className="group relative px-4 py-2.5 bg-white border-2 border-pink-200 hover:border-pink-400 rounded-xl text-xs font-bold text-gray-700 hover:text-pink-600 transition-all shadow-sm hover:shadow-md flex items-center gap-2"
                     onClick={() => removeFlower(Number.parseInt(id))}
                   >
                     <span>{flower.name.toUpperCase()}</span>
-                    <span className="text-pink-400">
+                    <span className="px-1.5 py-0.5 bg-pink-100 text-pink-600 rounded-full text-[10px]">
                       {count}
                     </span>
-                    <span className="text-gray-300 group-hover:text-pink-500 transition-colors">×</span>
+                    {/* Visible Cross Button */}
+                    <span className="flex items-center justify-center w-5 h-5 bg-pink-500 group-hover:bg-pink-600 text-white rounded-full text-xs font-bold transition-colors">
+                      ×
+                    </span>
                   </button>
                 );
               })}
