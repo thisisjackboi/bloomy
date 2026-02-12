@@ -34,6 +34,20 @@ export default async function BouquetPage(props: Params) {
     );
   }
 
+  // Debug logging (remove after fixing)
+  console.log('Raw data from Supabase:', data);
+  console.log('Letter type:', typeof data.letter);
+  console.log('Letter value:', data.letter);
+
+  // Normalize the data to ensure letter is an object
+  const normalizedData = {
+    ...data,
+    letter: typeof data.letter === 'string' ? JSON.parse(data.letter) : data.letter || { sender: '', recipient: '', message: '' }
+  };
+
+  console.log('Normalized data:', normalizedData);
+  console.log('Normalized letter:', normalizedData.letter);
+
   return (
     <div className="relative min-h-screen flex flex-col items-center p-4 md:p-8 overflow-hidden bg-gradient-to-br from-[hsl(var(--warm-cream))] via-[hsl(var(--dusty-pink))] to-[hsl(var(--warm-cream))] paper-texture">
       {/* Floating petals background */}
@@ -56,7 +70,7 @@ export default async function BouquetPage(props: Params) {
           </div>
 
           <div className="w-full max-w-2xl transform hover:scale-[1.02] transition-transform duration-700">
-            <Bouquet bouquet={data} />
+            <Bouquet bouquet={normalizedData} />
           </div>
 
           <footer className="mt-16 mb-12 flex flex-col items-center gap-6">

@@ -23,6 +23,12 @@ export default async function AllBouquetsPage() {
     );
   }
 
+  // Normalize the data to ensure letter is an object for all bouquets
+  const normalizedBouquets = data.map(bouquet => ({
+    ...bouquet,
+    letter: typeof bouquet.letter === 'string' ? JSON.parse(bouquet.letter) : bouquet.letter || { sender: '', recipient: '', message: '' }
+  }));
+
   return (
     <div className="relative min-h-screen flex flex-col items-center p-4 md:p-8 overflow-hidden bg-gradient-to-br from-[hsl(var(--warm-cream))] via-[hsl(var(--dusty-pink))] to-[hsl(var(--warm-cream))] paper-texture">
       {/* Floating petals background */}
@@ -42,7 +48,7 @@ export default async function AllBouquetsPage() {
 
         {/* Garden Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 w-full animate-fade-in-up">
-          {data.map((bouquet) => (
+          {normalizedBouquets.map((bouquet) => (
             <div key={bouquet.id} className="group flex flex-col items-center">
               <div className="w-full transform group-hover:scale-[1.02] transition-transform duration-500">
                 <BouquetOnly bouquet={bouquet} />

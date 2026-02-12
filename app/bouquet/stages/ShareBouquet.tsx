@@ -53,6 +53,19 @@ export default function ShareBouquet({
   }) => {
     const short_id = nanoid(8);
 
+    // Debug: Log what we're about to save
+    console.log('Creating bouquet with data:', {
+      short_id,
+      mode: bouquet.mode,
+      flowers: bouquet.flowers,
+      letter: bouquet.letter,
+      timestamp: bouquet.timestamp,
+      greenery: bouquet.greenery,
+      flowerOrder: bouquet.flowerOrder,
+    });
+    console.log('Letter object:', bouquet.letter);
+    console.log('Letter type:', typeof bouquet.letter);
+
     const { data, error } = await supabase
       .from("bouquets")
       .insert([
@@ -73,6 +86,7 @@ export default function ShareBouquet({
       return;
     }
 
+    console.log('Bouquet created successfully:', data[0]);
     const bouquetId = data[0].id;
     router.push(`/bouquet/${bouquetId}`);
   };
