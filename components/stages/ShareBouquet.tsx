@@ -7,7 +7,7 @@ import Bouquet from "../bouquet/Bouquet";
 import { useBouquet } from "../../context/BouquetContext";
 import type { Bouquet as BouquetType } from "@/types/bouquet";
 
-export default function ShareBouquet() {
+export default function ShareBouquet({ onEditMessage }: { onEditMessage?: () => void }) {
   const { bouquet } = useBouquet();
   // Helper function to get flower dimensions based on size
   const getFlowerDimensions = (size: string) => {
@@ -93,6 +93,20 @@ export default function ShareBouquet() {
       </div>
 
       <div className="mt-12 mb-20 flex flex-col items-center gap-4">
+        {/* Edit Message Button */}
+        {onEditMessage && (
+          <button
+            onClick={onEditMessage}
+            className="px-8 py-3 bg-white text-gray-700 text-sm font-semibold rounded-full border-2 border-gray-300 hover:border-pink-400 hover:bg-pink-50 hover:text-pink-600 transition-all duration-300 flex items-center gap-2"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+            </svg>
+            Edit Message
+          </button>
+        )}
+
+        {/* Send Button */}
         <button
           onClick={() => {
             console.log("Sending bouquet");

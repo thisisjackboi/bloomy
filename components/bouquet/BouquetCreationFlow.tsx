@@ -51,7 +51,7 @@ export default function BouquetCreationFlow() {
           {currentStep === 2 && <CardWriter />}
 
           {/* Step 3: Sharing */}
-          {currentStep === 3 && <ShareBouquet />}
+          {currentStep === 3 && <ShareBouquet onEditMessage={prevStep} />}
         </div>
 
         {/* Navigation buttons */}
