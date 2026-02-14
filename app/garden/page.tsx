@@ -57,12 +57,6 @@ export default async function AllBouquetsPage() {
                 <p className="text-[10px] uppercase tracking-widest text-gray-400 font-bold">
                   Planted on {new Date(bouquet.created_at || bouquet.timestamp).toLocaleDateString()}
                 </p>
-                <Link
-                  href={`/bouquet/${bouquet.id}`}
-                  className="text-xs text-pink-400 hover:text-pink-600 font-bold transition-colors"
-                >
-                  View Details →
-                </Link>
               </div>
             </div>
           ))}
